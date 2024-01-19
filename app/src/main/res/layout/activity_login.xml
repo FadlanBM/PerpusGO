@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse"
+        android:layout_alignParentEnd="true"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_centerInParent="true"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selamat Datang"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="@dimen/_18ssp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:fontFamily="@font/poppinsregular"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_250sdp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/login"
+        app:lottie_loop="true" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_10sdp"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Username"
+            android:inputType="text"
+            android:id="@+id/tiUsername_login"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:id="@+id/tiPassword_login"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:text="Login"
+        app:cornerRadius="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Belum Punya Akun ?"
+            android:fontFamily="@font/poppinsregular"
+            android:layout_marginVertical="@dimen/_3sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_3sdp"
+            android:layout_marginVertical="@dimen/_3sdp"
+            android:fontFamily="@font/poppinsregular"
+            android:text="Register"
+            android:textColor="#FF0000"
+            android:id="@+id/tvRegister_login"/>
+    </LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>
