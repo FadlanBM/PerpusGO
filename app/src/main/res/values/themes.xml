@@ -3,7 +3,12 @@
     <style name="Base.Theme.Perpustakaan" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowAnimationStyle">@style/animation</item>
     </style>
 
     <style name="Theme.Perpustakaan" parent="Base.Theme.Perpustakaan" />
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@anim/modal_in</item>
+        <item name="android:windowExitAnimation">@anim/modal_out</item>
+    </style>
 </resources>
