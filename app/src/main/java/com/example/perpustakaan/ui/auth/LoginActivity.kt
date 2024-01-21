@@ -13,9 +13,12 @@ import com.example.perpustakaan.R
 import com.example.perpustakaan.core.data.source.remote.network.State
 import com.example.perpustakaan.core.data.source.remote.request.LoginRequest
 import com.example.perpustakaan.databinding.ActivityLoginBinding
+import com.example.perpustakaan.ui.MenuActivity
 import com.example.perpustakaan.ui.main.MainActivity
 import com.example.perpustakaan.util.Prefs
 import com.inyongtisto.myhelper.extension.dismisLoading
+import com.inyongtisto.myhelper.extension.intentActivity
+import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.showLoading
 import com.inyongtisto.myhelper.extension.toastWarning
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         tiPassword=binding.tiPasswordLogin
         tiEmail=binding.tiEmailLogin
 
@@ -74,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showSuccessModal() {
         val dialog = Dialog(this)
-        dialog.setContentView(R.layout.activity_login)
+        dialog.setContentView(R.layout.success_login)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             dialog.window?.setBackgroundDrawableResource(R.drawable.background_success)
@@ -88,11 +92,12 @@ class LoginActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             dialog.dismiss()
-        }, 3000)
+            pushActivity(MenuActivity::class.java)
+        }, 2000)
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, MainActivity::class.java))
+        pushActivity(MainActivity::class.java)
     }
 }

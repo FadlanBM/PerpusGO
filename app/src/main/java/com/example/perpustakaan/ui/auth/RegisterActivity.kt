@@ -20,6 +20,7 @@ import com.example.perpustakaan.ui.main.MainActivity
 import com.example.perpustakaan.util.Prefs
 import com.inyongtisto.myhelper.extension.dismisLoading
 import com.inyongtisto.myhelper.extension.getErrorBody
+import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.showLoading
 import com.inyongtisto.myhelper.extension.toastWarning
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -122,13 +123,13 @@ class RegisterActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             dialog.dismiss()
-            startActivity(Intent(this, LoginActivity::class.java))
+            pushActivity(LoginActivity::class.java)
         }, 3000)
     }
 
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, MainActivity::class.java))
+        pushActivity(MainActivity::class.java)
     }
 }

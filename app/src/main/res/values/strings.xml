@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Perpustakaan</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_list">List</string>
+    <string name="title_add">Add Pinjaman</string>
+    <string name="title_setting">Setting</string>
 </resources>

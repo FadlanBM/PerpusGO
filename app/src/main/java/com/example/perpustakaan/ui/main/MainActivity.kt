@@ -1,11 +1,14 @@
 package com.example.perpustakaan.ui.main
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.perpustakaan.ui.auth.LoginActivity
 import com.example.perpustakaan.ui.auth.RegisterActivity
 import com.example.perpustakaan.databinding.ActivityMainBinding
+import com.example.perpustakaan.ui.MenuActivity
+import com.example.perpustakaan.util.Prefs
+import com.inyongtisto.myhelper.extension.intentActivity
+import com.inyongtisto.myhelper.extension.pushActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -13,12 +16,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
+        validasiLogin()
         binding.btnRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            intentActivity(RegisterActivity::class.java)
         }
         binding.btnLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            intentActivity(LoginActivity::class.java)
         }
+    }
+
+    private fun validasiLogin(){
+        val token=Prefs.token
+        if (token.isNotEmpty()) pushActivity(MenuActivity::class.java)
     }
 }
