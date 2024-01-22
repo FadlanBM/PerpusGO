@@ -44,4 +44,20 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
             Log.e("TAG","Login Error" + e.message)
         }
     }
+    fun getMePeminjam(token:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getMePeminjam(token).let {
+                if (it.isSuccessful){
+                    emit(Resource.success(it))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
 }

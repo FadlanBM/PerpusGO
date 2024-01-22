@@ -1,5 +1,7 @@
 package com.example.perpustakaan.ui.settings
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +43,7 @@ class SettingsFragment : Fragment() {
             Setting("Logout", "Keluar Dari Akun"),
         )
 
-        val settingsAdapter = ListSettingAdapter(settingsList)
+        val settingsAdapter = ListSettingAdapter(settingsList,requireContext())
         recyclerViewSettings.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewSettings.adapter = settingsAdapter
 
