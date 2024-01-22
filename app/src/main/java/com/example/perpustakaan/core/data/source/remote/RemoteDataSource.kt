@@ -10,4 +10,5 @@ class RemoteDataSource(private val api:ApiService) {
     suspend fun login(data:LoginRequest)=api.login(data)
     suspend fun register(data:RegisterRequest)=api.register(data)
     suspend fun getMePeminjam(token:String)=api.getMePeminjam(token)
+    suspend fun getDataPeminjam(token:String,idPeminjam:String)=api.getDataPeminjam(token,idPeminjam)
 }

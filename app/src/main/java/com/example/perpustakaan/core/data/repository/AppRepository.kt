@@ -49,7 +49,25 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
         try {
             remote.getMePeminjam(token).let {
                 if (it.isSuccessful){
-                    emit(Resource.success(it))
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun getDataPeminjam(token:String,idPeminjam:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.getDataPeminjam(token,idPeminjam).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body?.data))
                 }else{
                     emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
                     Log.e("ERROR","Error Http")

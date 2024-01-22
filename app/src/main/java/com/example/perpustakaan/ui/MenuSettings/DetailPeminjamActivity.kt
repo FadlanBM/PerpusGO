@@ -3,6 +3,7 @@ package com.example.perpustakaan.ui.MenuSettings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.view.isVisible
 import com.example.perpustakaan.core.data.source.remote.network.State
 import com.example.perpustakaan.databinding.ActivityDetailPeminjamBinding
 import com.example.perpustakaan.util.Prefs
@@ -18,7 +19,6 @@ class DetailPeminjamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityDetailPeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         getData()
     }
 
@@ -27,17 +27,34 @@ class DetailPeminjamActivity : AppCompatActivity() {
         viewModel.getMePeminjam(token).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
-                    dismisLoading()
-                    Log.e("token",it.data.toString())
+                    binding.pbDetail.isVisible=false
+                    val idpeminjam =it?.data?.user_id.toString()
+                    viewModel.getDataPeminjam(token,idpeminjam).observe(this) {
+                        when (it.state) {
+                            State.SUCCESS -> {
+                                dismisLoading()
+                                Log.e("token",it?.data.toString())
+                            }
+
+                            State.ERROR -> {
+                                dismisLoading()
+                                toastWarning(it?.message.toString())
+                            }
+
+                            State.LOADING -> {
+                                showLoading()
+                            }
+                        }
+                    }
                 }
 
                 State.ERROR -> {
-                    dismisLoading()
+                    binding.pbDetail.isVisible=false
                     toastWarning(it?.message.toString())
                 }
 
                 State.LOADING -> {
-                    showLoading()
+                    binding.pbDetail.isVisible=true
                 }
             }
         }

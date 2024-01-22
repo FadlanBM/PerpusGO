@@ -4,6 +4,8 @@ import com.example.perpustakaan.List.Peminjam
 import com.example.perpustakaan.core.data.source.remote.request.LoginRequest
 import com.example.perpustakaan.core.data.source.remote.request.RegisterRequest
 import com.example.perpustakaan.core.data.source.remote.response.LoginResponse
+import com.example.perpustakaan.core.data.source.remote.response.MePeminjamResponse
+import com.example.perpustakaan.core.data.source.remote.response.PeminjamResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -26,8 +28,11 @@ interface ApiService {
     @GET("me/peminjam")
     suspend fun getMePeminjam(
         @Header("Authorization") token: String
-    ):Response<ResponseBody>
+    ):Response<MePeminjamResponse>
 
-//    @GET("peminjam/{peminjamID}")
-//    fun getUser(@Path("peminjamID") peminjamID: String): Call<Peminjam>
+    @GET("peminjam/{peminjamID}")
+    suspend fun getDataPeminjam(
+        @Header("Authorization") token: String,
+        @Path("peminjamID") peminjamID: String
+    ):Response<PeminjamResponse>
 }
