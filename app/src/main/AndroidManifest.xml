@@ -20,6 +20,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.MenuSettings.ResetPasswordPeminjamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MenuSettings.UpdateDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MenuSettings.DetailPeminjamActivity"
             android:exported="false" />
         <activity

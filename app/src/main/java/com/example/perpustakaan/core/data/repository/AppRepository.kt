@@ -6,6 +6,8 @@ import com.example.perpustakaan.core.data.source.remote.RemoteDataSource
 import com.example.perpustakaan.core.data.source.remote.network.Resource
 import com.example.perpustakaan.core.data.source.remote.request.LoginRequest
 import com.example.perpustakaan.core.data.source.remote.request.RegisterRequest
+import com.example.perpustakaan.core.data.source.remote.request.ResetPasswordRequest
+import com.example.perpustakaan.core.data.source.remote.request.UpdatePeminjamRequest
 import com.inyongtisto.myhelper.extension.getErrorBody
 import kotlinx.coroutines.flow.flow
 
@@ -68,6 +70,40 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body?.data))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun updateDataPeminjam(token:String,idPeminjam:String,data:UpdatePeminjamRequest) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.updateDataPeminjam(token,idPeminjam,data).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun resetPasswordPeminjam(token:String,idPeminjam:String,data:ResetPasswordRequest) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.resetPasswordPeminjam(token,idPeminjam,data).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
                 }else{
                     emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
                     Log.e("ERROR","Error Http")

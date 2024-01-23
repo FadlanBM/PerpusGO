@@ -1,9 +1,8 @@
 package com.example.perpustakaan.core.data.source.remote.request
 
-data class RegisterRequest(
+data class UpdatePeminjamRequest(
     val alamat: String,
     val email: String,
     val nama_lengkap: String,
-    val password: String,
     val phone: String
 )

@@ -56,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
             viewModel.login(body).observe(this) {
                 when (it.state) {
                     State.SUCCESS -> {
-                        dismisLoading()
                         val token= it?.data.toString()
                         Prefs.token=token
                         showSuccessModal()
@@ -64,12 +63,10 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     State.ERROR -> {
-                        dismisLoading()
                         toastWarning(it?.message.toString())
                     }
 
                     State.LOADING -> {
-                        showLoading()
                     }
                 }
             }

@@ -32,9 +32,6 @@
             android:textSize="@dimen/_16ssp"
             android:layout_marginHorizontal="@dimen/_20sdp"
             />
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,12 +114,12 @@
                         android:id="@+id/tiConfirmPassword_register"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-        </ScrollView>
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:text="Register"
             app:cornerRadius="@dimen/_5sdp"
+            android:textSize="@dimen/_16ssp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:id="@+id/btnRegister"/>
         <LinearLayout

@@ -1,18 +1,19 @@
 package com.example.perpustakaan.core.data.source.remote.network
 
-import com.example.perpustakaan.List.Peminjam
 import com.example.perpustakaan.core.data.source.remote.request.LoginRequest
 import com.example.perpustakaan.core.data.source.remote.request.RegisterRequest
+import com.example.perpustakaan.core.data.source.remote.request.ResetPasswordRequest
+import com.example.perpustakaan.core.data.source.remote.request.UpdatePeminjamRequest
 import com.example.perpustakaan.core.data.source.remote.response.LoginResponse
 import com.example.perpustakaan.core.data.source.remote.response.MePeminjamResponse
 import com.example.perpustakaan.core.data.source.remote.response.PeminjamResponse
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -35,4 +36,17 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("peminjamID") peminjamID: String
     ):Response<PeminjamResponse>
+
+    @PUT("peminjam/{peminjamID}")
+    suspend fun updateDataPeminjam(
+        @Header("Authorization") token: String,
+        @Path("peminjamID") peminjamID: String,
+        @Body login:UpdatePeminjamRequest
+    ):Response<ResponseBody>
+    @PUT("reset/{peminjamID}")
+    suspend fun resetPasswordPeminjam(
+        @Header("Authorization") token: String,
+        @Path("peminjamID") peminjamID: String,
+        @Body login:ResetPasswordRequest
+    ):Response<ResponseBody>
 }

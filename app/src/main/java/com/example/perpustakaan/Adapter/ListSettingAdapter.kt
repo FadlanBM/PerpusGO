@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.perpustakaan.List.Setting
 import com.example.perpustakaan.R
 import com.example.perpustakaan.ui.MenuSettings.DetailPeminjamActivity
+import com.example.perpustakaan.ui.MenuSettings.ResetPasswordPeminjamActivity
+import com.example.perpustakaan.ui.MenuSettings.UpdateDataActivity
 import com.example.perpustakaan.ui.main.MainActivity
 import com.example.perpustakaan.util.Prefs
 import com.inyongtisto.myhelper.extension.intentActivity
@@ -42,6 +44,12 @@ class ListSettingAdapter(private val settingsList: List<Setting>,val context: Co
                 }
                 if (setting.title=="Data Pribadi"){
                     context.intentActivity(DetailPeminjamActivity::class.java)
+                }
+                if (setting.title=="Ubah Data Pribadi"){
+                    context.intentActivity(UpdateDataActivity::class.java)
+                }
+                if (setting.title=="Reset Password"){
+                    context.intentActivity(ResetPasswordPeminjamActivity::class.java)
                 }
             }
         }

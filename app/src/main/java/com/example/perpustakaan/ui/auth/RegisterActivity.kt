@@ -84,18 +84,15 @@ class RegisterActivity : AppCompatActivity() {
             viewModel.register(body).observe(this) {
                 when (it.state) {
                     State.SUCCESS -> {
-                        dismisLoading()
                         Log.e("token",it?.data?.getErrorBody().toString())
                         showSuccessModal()
                     }
 
                     State.ERROR -> {
-                        dismisLoading()
                         toastWarning(it?.message.toString())
                     }
 
                     State.LOADING -> {
-                        showLoading()
                     }
                 }
             }

@@ -3,22 +3,28 @@ package com.example.perpustakaan.ui.MenuSettings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.perpustakaan.Adapter.ListDetailDataAdapter
+import com.example.perpustakaan.List.Setting
 import com.example.perpustakaan.core.data.source.remote.network.State
 import com.example.perpustakaan.databinding.ActivityDetailPeminjamBinding
 import com.example.perpustakaan.util.Prefs
-import com.inyongtisto.myhelper.extension.dismisLoading
-import com.inyongtisto.myhelper.extension.showLoading
+import com.inyongtisto.myhelper.extension.setToolbar
 import com.inyongtisto.myhelper.extension.toastWarning
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailPeminjamActivity : AppCompatActivity() {
     private val viewModel: MenuSettingsViewModel by viewModel()
     private lateinit var binding:ActivityDetailPeminjamBinding
+    private lateinit var recyclerViewSettings: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityDetailPeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        recyclerViewSettings=binding.recyclerViewListData
+        setToolbar(binding.toolBarDetailPeminjam,"Kembali")
         getData()
     }
 
@@ -27,36 +33,45 @@ class DetailPeminjamActivity : AppCompatActivity() {
         viewModel.getMePeminjam(token).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
-                    binding.pbDetail.isVisible=false
                     val idpeminjam =it?.data?.user_id.toString()
                     viewModel.getDataPeminjam(token,idpeminjam).observe(this) {
                         when (it.state) {
                             State.SUCCESS -> {
-                                dismisLoading()
+                                val settingsList = listOf(
+                                    Setting("Nama Lengkap", it?.data?.nama_lengkap.toString()),
+                                    Setting("Email", it?.data?.email.toString()),
+                                    Setting("Phone Number", it?.data?.phone.toString()),
+                                    Setting("Alamat", it?.data?.alamat.toString()),
+                                )
+
+                                val settingsAdapter = ListDetailDataAdapter(settingsList,this)
+                                recyclerViewSettings.layoutManager = LinearLayoutManager(this)
+                                recyclerViewSettings.adapter = settingsAdapter
                                 Log.e("token",it?.data.toString())
                             }
 
                             State.ERROR -> {
-                                dismisLoading()
                                 toastWarning(it?.message.toString())
                             }
 
                             State.LOADING -> {
-                                showLoading()
                             }
                         }
                     }
                 }
 
                 State.ERROR -> {
-                    binding.pbDetail.isVisible=false
                     toastWarning(it?.message.toString())
                 }
 
                 State.LOADING -> {
-                    binding.pbDetail.isVisible=true
                 }
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
