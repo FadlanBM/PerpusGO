@@ -10,6 +10,7 @@ import com.example.perpustakaan.core.data.source.remote.request.ResetPasswordReq
 import com.example.perpustakaan.core.data.source.remote.request.UpdatePeminjamRequest
 import com.inyongtisto.myhelper.extension.getErrorBody
 import kotlinx.coroutines.flow.flow
+import okhttp3.MultipartBody
 
 class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
     fun login(data:LoginRequest) = flow {
@@ -101,6 +102,23 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
         emit(Resource.loading(null))
         try {
             remote.resetPasswordPeminjam(token,idPeminjam,data).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun uploadProfileImage(token:String,idPeminjam:String,image: MultipartBody.Part?=null) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.uploadProfileImage(token,idPeminjam,image).let {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body))

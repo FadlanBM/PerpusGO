@@ -5,6 +5,8 @@ import com.example.perpustakaan.core.data.source.remote.request.LoginRequest
 import com.example.perpustakaan.core.data.source.remote.request.RegisterRequest
 import com.example.perpustakaan.core.data.source.remote.request.ResetPasswordRequest
 import com.example.perpustakaan.core.data.source.remote.request.UpdatePeminjamRequest
+import okhttp3.MultipartBody
+import retrofit2.http.Multipart
 
 class RemoteDataSource(private val api:ApiService) {
     suspend fun login(data:LoginRequest)=api.login(data)
@@ -13,4 +15,5 @@ class RemoteDataSource(private val api:ApiService) {
     suspend fun getDataPeminjam(token:String,idPeminjam:String)=api.getDataPeminjam(token,idPeminjam)
     suspend fun updateDataPeminjam(token:String,idPeminjam:String,data:UpdatePeminjamRequest)=api.updateDataPeminjam(token,idPeminjam,data)
     suspend fun resetPasswordPeminjam(token:String,idPeminjam:String,data:ResetPasswordRequest)=api.resetPasswordPeminjam(token,idPeminjam,data)
+    suspend fun uploadProfileImage(token:String,idPeminjam:String,image:MultipartBody.Part?=null)=api.uploadProfileImage(token,idPeminjam,image)
 }
