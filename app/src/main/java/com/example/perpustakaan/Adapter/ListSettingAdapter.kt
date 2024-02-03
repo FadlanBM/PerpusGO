@@ -67,6 +67,7 @@ class ListSettingAdapter(private val settingsList: List<Setting>,val context: Co
 
         alertDialogBuilder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
             Prefs.token=""
+            Prefs.userID=""
             context.pushActivity(MainActivity::class.java)
         })
 

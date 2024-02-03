@@ -2,5 +2,6 @@ package com.example.perpustakaan.util
 
 object Constants {
 
-    const val BASE_URL="http://10.0.2.2:8080/"
+    const val BASE_URL="https://testing.fadlandev.my.id/"
+    const val BASE_Image= BASE_URL+"api/peminjam/images/"
 }

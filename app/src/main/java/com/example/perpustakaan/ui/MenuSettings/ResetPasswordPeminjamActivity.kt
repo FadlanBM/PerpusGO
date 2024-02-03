@@ -60,34 +60,19 @@ class ResetPasswordPeminjamActivity : AppCompatActivity() {
 
     private fun updateData(){
         val token="Bearer ${Prefs.token}"
-        viewModel.getMePeminjam(token).observe(this) {
+        val body= ResetPasswordRequest(
+            tiPasswordNew.text.toString(),
+            tiPasswordOld.text.toString()
+        )
+        val idpeminjam =Prefs.userID
+        viewModel.resetPasswordPeminjam(token,idpeminjam,body).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
-                    val body= ResetPasswordRequest(
-                        tiPasswordNew.text.toString(),
-                        tiPasswordOld.text.toString()
-                    )
-                    val idpeminjam =it?.data?.user_id.toString()
-                    viewModel.resetPasswordPeminjam(token,idpeminjam,body).observe(this) {
-                        when (it.state) {
-                            State.SUCCESS -> {
-                                showSuccessModal()
-                            }
-
-                            State.ERROR -> {
-                                toastWarning(it?.message.toString())
-                            }
-
-                            State.LOADING -> {
-                            }
-                        }
-                    }
+                    showSuccessModal()
                 }
-
                 State.ERROR -> {
                     toastWarning(it?.message.toString())
                 }
-
                 State.LOADING -> {
                 }
             }

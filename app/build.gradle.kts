@@ -67,6 +67,15 @@ dependencies {
     //Koin
     implementation("io.insert-koin:koin-android:3.1.4")
 
+    //Picasso
+    implementation("com.squareup.picasso:picasso:2.8")
+
+
+    //Drjacky
+    implementation("com.github.Drjacky:ImagePicker:2.3.22")
+
+
+
     //helper
     implementation("com.github.TistoW:MyHelper:2.0.38")
 

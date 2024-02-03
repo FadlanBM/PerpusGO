@@ -30,40 +30,25 @@ class DetailPeminjamActivity : AppCompatActivity() {
 
     private fun getData(){
         val token="Bearer ${Prefs.token}"
-        viewModel.getMePeminjam(token).observe(this) {
+        val idpeminjam =Prefs.userID
+        viewModel.getDataPeminjam(token,idpeminjam).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
-                    val idpeminjam =it?.data?.user_id.toString()
-                    viewModel.getDataPeminjam(token,idpeminjam).observe(this) {
-                        when (it.state) {
-                            State.SUCCESS -> {
-                                val settingsList = listOf(
-                                    Setting("Nama Lengkap", it?.data?.nama_lengkap.toString()),
-                                    Setting("Email", it?.data?.email.toString()),
-                                    Setting("Phone Number", it?.data?.phone.toString()),
-                                    Setting("Alamat", it?.data?.alamat.toString()),
-                                )
+                    val settingsList = listOf(
+                        Setting("Nama Lengkap", it?.data?.nama_lengkap.toString()),
+                        Setting("Email", it?.data?.email.toString()),
+                        Setting("Phone Number", it?.data?.phone.toString()),
+                        Setting("Alamat", it?.data?.alamat.toString()),
+                        )
 
-                                val settingsAdapter = ListDetailDataAdapter(settingsList,this)
-                                recyclerViewSettings.layoutManager = LinearLayoutManager(this)
-                                recyclerViewSettings.adapter = settingsAdapter
-                                Log.e("token",it?.data.toString())
-                            }
-
-                            State.ERROR -> {
-                                toastWarning(it?.message.toString())
-                            }
-
-                            State.LOADING -> {
-                            }
-                        }
-                    }
+                    val settingsAdapter = ListDetailDataAdapter(settingsList,this)
+                    recyclerViewSettings.layoutManager = LinearLayoutManager(this)
+                    recyclerViewSettings.adapter = settingsAdapter
                 }
 
                 State.ERROR -> {
                     toastWarning(it?.message.toString())
                 }
-
                 State.LOADING -> {
                 }
             }

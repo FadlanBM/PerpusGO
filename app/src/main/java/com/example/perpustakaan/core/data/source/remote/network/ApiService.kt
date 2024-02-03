@@ -39,7 +39,6 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("peminjamID") peminjamID: String
     ):Response<PeminjamResponse>
-
     @PUT("peminjam/{peminjamID}")
     suspend fun updateDataPeminjam(
         @Header("Authorization") token: String,
@@ -53,10 +52,10 @@ interface ApiService {
         @Body login:ResetPasswordRequest
     ):Response<ResponseBody>
     @Multipart
-    @PUT("peminjam/updateImage/{peminjamID}")
+    @PUT("peminjam/updateImage/{id}")
     suspend fun uploadProfileImage(
         @Header("Authorization") token: String,
-        @Path("peminjamID") peminjamID: String?=null,
+        @Path("id") peminjamID: String?=null,
         @Part login:MultipartBody.Part?=null
     ):Response<ResponseBody>
 }

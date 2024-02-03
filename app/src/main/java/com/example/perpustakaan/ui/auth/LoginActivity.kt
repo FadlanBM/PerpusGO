@@ -18,6 +18,7 @@ import com.example.perpustakaan.ui.main.MainActivity
 import com.example.perpustakaan.util.Prefs
 import com.inyongtisto.myhelper.extension.dismisLoading
 import com.inyongtisto.myhelper.extension.intentActivity
+import com.inyongtisto.myhelper.extension.logm
 import com.inyongtisto.myhelper.extension.pushActivity
 import com.inyongtisto.myhelper.extension.showLoading
 import com.inyongtisto.myhelper.extension.toastWarning
@@ -59,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
                         val token= it?.data.toString()
                         Prefs.token=token
                         showSuccessModal()
-                        Log.e("token",token)
+                        getData()
                     }
 
                     State.ERROR -> {
@@ -68,6 +69,26 @@ class LoginActivity : AppCompatActivity() {
 
                     State.LOADING -> {
                     }
+                }
+            }
+        }
+    }
+
+    private fun getData(){
+        val token="Bearer ${Prefs.token}"
+        viewModel.getMePeminjam(token).observe(this) {
+            when (it.state) {
+                State.SUCCESS -> {
+                    Log.e("data",it.data.toString())
+                    val idpeminjam =it?.data?.user_id.toString()
+                    Prefs.userID=idpeminjam
+                }
+
+                State.ERROR -> {
+                    toastWarning(it?.message.toString())
+                }
+
+                State.LOADING -> {
                 }
             }
         }

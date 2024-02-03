@@ -11,27 +11,30 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse"
         android:layout_alignParentEnd="true"/>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:orientation="vertical">
-            <TextView
-            android:layout_width="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selamat Datang"
-            android:fontFamily="@font/poppinsbold"
-            android:textSize="@dimen/_18ssp"/>
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:orientation="vertical">
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register"
-            android:fontFamily="@font/poppinsregular"
-            android:textSize="@dimen/_16ssp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selamat Datang"
+                android:fontFamily="@font/poppinsbold"
+                android:textSize="@dimen/_18ssp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:fontFamily="@font/poppinsregular"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,35 +117,36 @@
                         android:id="@+id/tiConfirmPassword_register"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:text="Register"
-            app:cornerRadius="@dimen/_5sdp"
-            android:textSize="@dimen/_16ssp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:id="@+id/btnRegister"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:text="Register"
+                app:cornerRadius="@dimen/_5sdp"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/btnRegister"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sudah Punya Akun ?"
-                android:fontFamily="@font/poppinsregular"
-                android:layout_marginVertical="@dimen/_3sdp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:textColor="#FF0000"
-                android:fontFamily="@font/poppinsregular"
-                android:layout_marginHorizontal="@dimen/_3sdp"
-                android:layout_marginVertical="@dimen/_3sdp"
-                android:id="@+id/tvLogin_register"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sudah Punya Akun ?"
+                    android:fontFamily="@font/poppinsregular"
+                    android:layout_marginVertical="@dimen/_3sdp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textColor="#FF0000"
+                    android:fontFamily="@font/poppinsregular"
+                    android:layout_marginHorizontal="@dimen/_3sdp"
+                    android:layout_marginVertical="@dimen/_3sdp"
+                    android:id="@+id/tvLogin_register"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

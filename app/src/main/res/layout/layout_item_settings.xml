@@ -8,6 +8,7 @@
     android:layout_marginVertical="@dimen/_5sdp"
     android:id="@+id/btn_aksi_settings"
     android:backgroundTint="@color/white"
+    android:layout_marginHorizontal="@dimen/_5sdp"
     android:padding="8dp">
 
 <LinearLayout

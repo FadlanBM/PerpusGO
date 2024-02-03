@@ -1,13 +1,17 @@
 package com.example.perpustakaan.ui.settings
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,12 +22,17 @@ import com.example.perpustakaan.List.Setting
 import com.example.perpustakaan.core.data.source.remote.network.State
 import com.example.perpustakaan.databinding.FragmentSettingsBinding
 import com.example.perpustakaan.ui.MenuSettings.MenuSettingsViewModel
+import com.example.perpustakaan.util.Constants
 import com.example.perpustakaan.util.Prefs
+import com.github.drjacky.imagepicker.ImagePicker
+import com.github.drjacky.imagepicker.constant.ImageProvider
 import com.inyongtisto.myhelper.extension.dismisLoading
 import com.inyongtisto.myhelper.extension.getInitial
 import com.inyongtisto.myhelper.extension.showLoading
 import com.inyongtisto.myhelper.extension.toastWarning
+import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.IOException
 
 
 class SettingsFragment : Fragment() {
@@ -50,9 +59,7 @@ class SettingsFragment : Fragment() {
         tvEmail=binding.tvEmail
         tvphone=binding.tvPhone
         tvInitial=binding.tvInisial
-
         getData()
-
 
         val settingsList = listOf(
             Setting("Data Pribadi", "Melihat Data Pribadi"),
@@ -68,35 +75,27 @@ class SettingsFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        getData()
+        super.onResume()
+    }
+
     private fun getData(){
         val token="Bearer ${Prefs.token}"
-        viewModel.getMePeminjam(token).observe(viewLifecycleOwner) {
+        val idpeminjam =Prefs.userID
+        viewModel.getDataPeminjam(token,idpeminjam).observe(viewLifecycleOwner) {
             when (it.state) {
                 State.SUCCESS -> {
-                    val idpeminjam =it?.data?.user_id.toString()
-                    viewModel.getDataPeminjam(token,idpeminjam).observe(viewLifecycleOwner) {
-                        when (it.state) {
-                            State.SUCCESS -> {
-                                tvName.text=it?.data?.nama_lengkap.toString()
-                                tvphone.text=it?.data?.phone.toString()
-                                tvEmail.text=it?.data?.email.toString()
-                                tvInitial.text=it?.data?.nama_lengkap.toString()
-                            }
-
-                            State.ERROR -> {
-                                toastWarning(it?.message.toString())
-                            }
-
-                            State.LOADING -> {
-                            }
-                        }
-                    }
+                    tvName.text=it?.data?.nama_lengkap.toString()
+                    tvphone.text=it?.data?.phone.toString()
+                    tvEmail.text=it?.data?.email.toString()
+                    Log.e("iamge",Constants.BASE_URL+it?.data?.photo.toString())
+                    Picasso.get().load(Constants.BASE_Image+it?.data?.photo).into(binding.imageProfile)
+                    tvInitial.text=it?.data?.nama_lengkap.toString()
                 }
-
                 State.ERROR -> {
                     toastWarning(it?.message.toString())
                 }
-
                 State.LOADING -> {
                 }
             }

@@ -5,61 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse"
         android:layout_alignParentEnd="true"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ellipse2"
-        android:layout_alignParentBottom="true"/>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selamat Datang"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppinsbold"
-            android:layout_gravity="center"/>
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_250sdp"
-            app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/welcome"
-            app:lottie_loop="true" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            app:cornerRadius="@dimen/_5sdp"
-            android:backgroundTint="#AB5EDC"
-            android:text="Login"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:id="@+id/btnLogin"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            app:cornerRadius="@dimen/_5sdp"
-            android:backgroundTint="#AB5EDC"
-            android:text="Register"
-            android:textColor="@color/white"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:textSize="@dimen/_18sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:id="@+id/btnRegister"/>
-    </LinearLayout>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selamat Datang"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsbold"
+                android:layout_gravity="center"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_250sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/welcome"
+                app:lottie_loop="true" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                app:cornerRadius="@dimen/_5sdp"
+                android:backgroundTint="#AB5EDC"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:id="@+id/btnLogin"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                app:cornerRadius="@dimen/_5sdp"
+                android:backgroundTint="#AB5EDC"
+                android:text="Register"
+                android:textColor="@color/white"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:textSize="@dimen/_18sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:id="@+id/btnRegister"/>
+        </LinearLayout>
 
-
+    </ScrollView>
 </RelativeLayout>

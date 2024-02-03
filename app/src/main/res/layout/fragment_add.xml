@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.add_book.AddBookFragment">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:orientation="vertical">
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView_Login"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
-            app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/search_animation"
-            app:lottie_loop="true" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:orientation="vertical">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView_Login"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Insert Code Buku"
-                android:inputType="text"
-                android:id="@+id/tiCodeBuku"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:text="Cari Code"
-            app:cornerRadius="@dimen/_5sdp"
-            android:layout_marginVertical="@dimen/_5sdp"
-            android:backgroundTint="#AB5EDC"/>
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:text="Scan QR Code"
-            app:cornerRadius="@dimen/_5sdp"
-            app:backgroundTint="#68870F" />
-    </LinearLayout>
-    </RelativeLayout>
+                android:layout_height="@dimen/_250sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/search_animation"
+                app:lottie_loop="true" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Insert Code Buku"
+                    android:inputType="text"
+                    android:id="@+id/tiCodeBuku"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:text="Cari Code"
+                app:cornerRadius="@dimen/_5sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:backgroundTint="#AB5EDC"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:text="Scan QR Code"
+                app:cornerRadius="@dimen/_5sdp"
+                app:backgroundTint="#68870F" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

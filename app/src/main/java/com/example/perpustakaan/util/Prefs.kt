@@ -8,11 +8,11 @@ import com.example.perpustakaan.core.data.source.models.Peminjam
 import com.inyongtisto.myhelper.extension.toJson
 
 object Prefs :KotprefModel() {
-    var user by stringPref()
+    var userID by stringPref("")
 
     var token by stringPref("")
 
-    fun setUser(data: Peminjam?) {
+   /* fun setUser(data: Peminjam?) {
         user = data.toJson()
-    }
+    }*/
 }

@@ -9,4 +9,7 @@ import com.example.perpustakaan.core.data.source.remote.request.RegisterRequest
 class AuthViewModel(val repo:AppRepository):ViewModel() {
     fun login(data:LoginRequest)=repo.login(data).asLiveData()
     fun register(data:RegisterRequest)=repo.register(data).asLiveData()
+
+    fun getMePeminjam(token:String)=repo.getMePeminjam(token).asLiveData()
+
 }
