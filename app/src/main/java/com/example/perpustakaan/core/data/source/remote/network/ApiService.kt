@@ -24,7 +24,7 @@ interface ApiService {
     suspend fun login(
         @Body login:LoginRequest
     ):Response<LoginResponse>
-    @POST("peminjam")
+    @POST("register/petugas")
     suspend fun register(
         @Body login:RegisterRequest
     ):Response<ResponseBody>
@@ -39,7 +39,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("peminjamID") peminjamID: String
     ):Response<PeminjamResponse>
-    @PUT("peminjam/{peminjamID}")
+    @PUT("peminjam/updatepeminjam/{peminjamID}")
     suspend fun updateDataPeminjam(
         @Header("Authorization") token: String,
         @Path("peminjamID") peminjamID: String,

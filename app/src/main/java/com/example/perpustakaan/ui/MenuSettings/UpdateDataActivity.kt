@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import com.example.perpustakaan.R
 import com.example.perpustakaan.core.data.source.remote.network.State
 import com.example.perpustakaan.core.data.source.remote.request.UpdatePeminjamRequest
@@ -71,15 +72,12 @@ class UpdateDataActivity : AppCompatActivity() {
                 tiAlamat.setError("Form Alamat masih kosong")
             }
             if (tiNama.text.isEmpty()||tiEmail.text.isEmpty()||tiPhone.text.isEmpty()||tiAlamat.text.isEmpty()) return@setOnClickListener
-            validasiImage()
             updateData()
         }
     }
 
     private fun validasiImage(){
-        if (fileImage!=null){
-            upload()
-        }
+
     }
 
     private fun handlerButton() {
@@ -114,19 +112,24 @@ class UpdateDataActivity : AppCompatActivity() {
         viewModel.uploadProfileImage(token,id_user,file).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
+                    binding.pbUpdateProfile.isVisible=false
+                    binding.mainUpdate.isVisible=true
                     showSuccessModal()
                 }
 
                 State.ERROR -> {
+                    binding.pbUpdateProfile.isVisible=false
+                    binding.mainUpdate.isVisible=true
                     toastWarning(it?.message.toString())
                 }
 
                 State.LOADING -> {
+                    binding.pbUpdateProfile.isVisible=true
+                    binding.mainUpdate.isVisible=false
                 }
             }
         }
     }
-
 
     private fun getData(){
         val token="Bearer ${Prefs.token}"
@@ -134,6 +137,8 @@ class UpdateDataActivity : AppCompatActivity() {
         viewModel.getDataPeminjam(token,idpeminjam).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
+                    binding.pbUpdateProfile.isVisible=false
+                    binding.mainUpdate.isVisible=true
                     tiNama.setText(it?.data?.nama_lengkap.toString())
                     tiEmail.setText(it?.data?.email.toString())
                     tiAlamat.setText(it?.data?.alamat.toString())
@@ -143,10 +148,14 @@ class UpdateDataActivity : AppCompatActivity() {
                 }
 
                 State.ERROR -> {
+                    binding.pbUpdateProfile.isVisible=false
+                    binding.mainUpdate.isVisible=true
                     toastWarning(it?.message.toString())
                 }
 
                 State.LOADING -> {
+                    binding.pbUpdateProfile.isVisible=true
+                    binding.mainUpdate.isVisible=false
                 }
             }
         }
@@ -164,8 +173,9 @@ class UpdateDataActivity : AppCompatActivity() {
         viewModel.updateDataPeminjam(token,idpeminjam,body).observe(this) {
             when (it.state) {
                 State.SUCCESS -> {
-                    getData()
-                    showSuccessModal()
+                    if (fileImage!=null){
+                        upload()
+                    }
                 }
 
                 State.ERROR -> {
@@ -193,8 +203,8 @@ class UpdateDataActivity : AppCompatActivity() {
         dialog.show()
 
         Handler().postDelayed({
-            dialog.dismiss()
             getData()
+            dialog.dismiss()
         }, 2000)
     }
     override fun onSupportNavigateUp(): Boolean {
