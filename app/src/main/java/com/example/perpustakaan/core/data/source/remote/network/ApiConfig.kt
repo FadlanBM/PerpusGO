@@ -37,3 +37,32 @@ object ApiConfig {
     val provideApiService: ApiService
         get() = client.create(ApiService::class.java)
 }
+object ApiConfigAddress {
+
+    private const val BASE_URL = Constants.BASE_URL_ADDRESS+"api/"
+
+    private val client: Retrofit
+        get() {
+            val gson = GsonBuilder()
+                .setLenient()
+                .create()
+
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            val client: OkHttpClient = OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build()
+
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build()
+        }
+
+    val provideApiService: ApiWilayah
+        get() = client.create(ApiWilayah::class.java)
+}

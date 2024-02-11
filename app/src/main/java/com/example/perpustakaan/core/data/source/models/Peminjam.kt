@@ -8,6 +8,5 @@ data class Peminjam(
     val email: String,
     val phone: String,
     val nama_lengkap: String,
-    val password: String,
     val photo: String,
 )

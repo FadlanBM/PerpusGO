@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10sdp"
             >
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiEmail_login"
                 android:layout_width="match_parent"

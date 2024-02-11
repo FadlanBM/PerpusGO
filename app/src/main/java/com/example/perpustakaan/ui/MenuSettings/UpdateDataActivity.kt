@@ -11,6 +11,9 @@ import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -55,6 +58,7 @@ class UpdateDataActivity : AppCompatActivity() {
         tiAlamat=binding.tiAlamatUpdate
         tvInitial=binding.tvInisial
 
+        Prov()
         getData()
         handlerButton()
 
@@ -126,6 +130,108 @@ class UpdateDataActivity : AppCompatActivity() {
                 State.LOADING -> {
                     binding.pbUpdateProfile.isVisible=true
                     binding.mainUpdate.isVisible=false
+                }
+            }
+        }
+    }
+    private fun Prov(){
+        viewModel.provinsi().observe(this) {
+            when (it.state) {
+                State.SUCCESS -> {
+                    val item =ArrayList<String>()
+                    val iditem=ArrayList<String>()
+                    for (i in 0 until it.data!!.size){
+                        val json=it.data[i]
+                        val provinsi=json.name
+                        val idprovinsi=json.id
+                        item.add(provinsi)
+                        iditem.add(idprovinsi)
+                    }
+                    var autoComplite: AutoCompleteTextView =binding.comboBoxListprovinsi
+                    var adapter= ArrayAdapter(this,R.layout.list_wilayah,item)
+
+                    autoComplite.setAdapter(adapter)
+                    autoComplite.onItemClickListener= AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                        iditem.mapIndexed { index, s ->
+                            if (i==index){
+                                binding.comboBoxListkabupaten.text.clear()
+                                binding.comboBoxListkecamatan.text.clear()
+                                kab(s)
+                            }
+                        }
+                    }
+                }
+
+                State.ERROR -> {
+                    toastWarning(it?.message.toString())
+                }
+
+                State.LOADING -> {
+                }
+            }
+        }
+    }
+    private fun kab(id:String){
+        viewModel.kabupaten(id).observe(this) {
+            when (it.state) {
+                State.SUCCESS -> {
+                    binding.comboBoxListkabupaten.isEnabled=true
+                    val item =ArrayList<String>()
+                    val iditem=ArrayList<String>()
+                    for (i in 0 until it.data!!.size){
+                        val json=it.data[i]
+                        val kab=json.name
+                        val idkab=json.id
+                        item.add(kab)
+                        iditem.add(idkab)
+                    }
+                    var autoComplite: AutoCompleteTextView =binding.comboBoxListkabupaten
+                    var adapter= ArrayAdapter(this,R.layout.list_wilayah,item)
+
+                    autoComplite.setAdapter(adapter)
+                    autoComplite.onItemClickListener= AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                        iditem.mapIndexed { index, s ->
+                            if (i==index){
+                                binding.comboBoxListkecamatan.text.clear()
+                                Kec(s)
+                            }
+                        }
+                    }
+                }
+
+                State.ERROR -> {
+                    toastWarning(it?.message.toString())
+                }
+
+                State.LOADING -> {
+                }
+            }
+        }
+    }
+    private fun Kec(id:String){
+        viewModel.kecamatan(id).observe(this) {
+            when (it.state) {
+                State.SUCCESS -> {
+                    binding.comboBoxListkecamatan.isEnabled=true
+                    val item =ArrayList<String>()
+                    for (i in 0 until it.data!!.size){
+                        val json=it.data[i]
+                        val kab=json.name
+                        item.add(kab)
+                    }
+                    var autoComplite: AutoCompleteTextView =binding.comboBoxListkecamatan
+                    var adapter= ArrayAdapter(this,R.layout.list_wilayah,item)
+
+                    autoComplite.setAdapter(adapter)
+                    autoComplite.onItemClickListener= AdapterView.OnItemClickListener { adapterView, view, i, l ->
+                    }
+                }
+
+                State.ERROR -> {
+                    toastWarning(it?.message.toString())
+                }
+
+                State.LOADING -> {
                 }
             }
         }

@@ -98,10 +98,10 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
             Log.e("TAG","Login Error" + e.message)
         }
     }
-    fun resetPasswordPeminjam(token:String,idPeminjam:String,data:ResetPasswordRequest) = flow {
+    fun uploadProfileImage(token:String,idPeminjam:String,image: MultipartBody.Part?=null) = flow {
         emit(Resource.loading(null))
         try {
-            remote.resetPasswordPeminjam(token,idPeminjam,data).let {
+            remote.uploadProfileImage(token,idPeminjam,image).let {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body))
@@ -115,10 +115,44 @@ class AppRepository(val local:LocalDataSource,val remote:RemoteDataSource) {
             Log.e("TAG","Login Error" + e.message)
         }
     }
-    fun uploadProfileImage(token:String,idPeminjam:String,image: MultipartBody.Part?=null) = flow {
+    fun provinsi() = flow {
         emit(Resource.loading(null))
         try {
-            remote.uploadProfileImage(token,idPeminjam,image).let {
+            remote.provinsi().let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun kabupaten(id:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.kabupaten(id).let {
+                if (it.isSuccessful){
+                    val body=it.body()
+                    emit(Resource.success(body))
+                }else{
+                    emit(Resource.error(it.getErrorBody()?.message?:"Terjadi Kesalahan",null))
+                    Log.e("ERROR","Error Http")
+                }
+            }
+        }catch (e:Exception){
+            emit(Resource.error(e.message?:"terjadi Kesalahan",null))
+            Log.e("TAG","Login Error" + e.message)
+        }
+    }
+    fun kecamatan(id:String) = flow {
+        emit(Resource.loading(null))
+        try {
+            remote.kecamatan(id).let {
                 if (it.isSuccessful){
                     val body=it.body()
                     emit(Resource.success(body))

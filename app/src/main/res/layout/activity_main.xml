@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:id="@+id/scMain"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,6 +53,11 @@
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:id="@+id/btnRegister"/>
         </LinearLayout>
-
     </ScrollView>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/pb_loading"/>
 </RelativeLayout>

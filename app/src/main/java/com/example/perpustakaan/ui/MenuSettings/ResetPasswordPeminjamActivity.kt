@@ -53,31 +53,10 @@ class ResetPasswordPeminjamActivity : AppCompatActivity() {
             if (tiPasswordNew.text.toString()!=binding.tiPasswordNewConfirm.text.toString()){
                 binding.tiPasswordNewConfirm.setError("Form Password Confirm tidak sama")
             }else{
-            updateData()
             }
         }
     }
 
-    private fun updateData(){
-        val token="Bearer ${Prefs.token}"
-        val body= ResetPasswordRequest(
-            tiPasswordNew.text.toString(),
-            tiPasswordOld.text.toString()
-        )
-        val idpeminjam =Prefs.userID
-        viewModel.resetPasswordPeminjam(token,idpeminjam,body).observe(this) {
-            when (it.state) {
-                State.SUCCESS -> {
-                    showSuccessModal()
-                }
-                State.ERROR -> {
-                    toastWarning(it?.message.toString())
-                }
-                State.LOADING -> {
-                }
-            }
-        }
-    }
 
     private fun showSuccessModal() {
         val dialog = Dialog(this)

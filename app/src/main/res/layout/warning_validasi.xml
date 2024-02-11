@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_250sdp"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_200sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/validasi_akun"
+                app:lottie_loop="true" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottieAnimationView"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/textSuccess_validasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Berhasil!"
+            android:fontFamily="@font/poppinssemibold"
+            android:textSize="@dimen/_14ssp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sialahkan validasi email"
+            android:fontFamily="@font/poppinsregular"
+            android:textSize="@dimen/_14ssp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

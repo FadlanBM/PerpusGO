@@ -18,12 +18,15 @@ import com.example.perpustakaan.ui.MenuSettings.ResetPasswordPeminjamActivity
 import com.example.perpustakaan.ui.MenuSettings.UpdateDataActivity
 import com.example.perpustakaan.ui.main.MainActivity
 import com.example.perpustakaan.util.Prefs
+import com.google.firebase.auth.FirebaseAuth
 import com.inyongtisto.myhelper.extension.intentActivity
 import com.inyongtisto.myhelper.extension.loge
 import com.inyongtisto.myhelper.extension.pushActivity
 
 class ListSettingAdapter(private val settingsList: List<Setting>,val context: Context):RecyclerView.Adapter<ListSettingAdapter.ViewHolder>() {
-        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var firebaseAuth= FirebaseAuth.getInstance()
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val titleTextView: TextView = itemView.findViewById(R.id.textViewSettingTitle)
             val descriptionTextView: TextView = itemView.findViewById(R.id.textViewSettingDescription)
             val aksi:CardView=itemView.findViewById(R.id.btn_aksi_settings)
@@ -68,6 +71,7 @@ class ListSettingAdapter(private val settingsList: List<Setting>,val context: Co
         alertDialogBuilder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
             Prefs.token=""
             Prefs.userID=""
+            firebaseAuth.signOut()
             context.pushActivity(MainActivity::class.java)
         })
 

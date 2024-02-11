@@ -1,9 +1,18 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("F:\\MyKeyStore\\keystore.jks")
+            storePassword = "12345123"
+            keyAlias = "keymyapp"
+            keyPassword = "12345123"
+        }
+    }
     namespace = "com.example.perpustakaan"
     compileSdk = 34
 
@@ -15,6 +24,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
@@ -39,6 +49,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -74,8 +85,6 @@ dependencies {
     //Drjacky
     implementation("com.github.Drjacky:ImagePicker:2.3.22")
 
-
-
     //helper
     implementation("com.github.TistoW:MyHelper:2.0.38")
 
@@ -83,6 +92,15 @@ dependencies {
     implementation("com.chibatching.kotpref:kotpref:2.13.1")
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+
+    //shimmer loading
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

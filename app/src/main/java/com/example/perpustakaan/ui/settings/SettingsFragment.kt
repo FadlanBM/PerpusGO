@@ -83,14 +83,19 @@ class SettingsFragment : Fragment() {
     private fun getData(){
         val token="Bearer ${Prefs.token}"
         val idpeminjam =Prefs.userID
+        Log.e("idpeminjam",idpeminjam)
         viewModel.getDataPeminjam(token,idpeminjam).observe(viewLifecycleOwner) {
             when (it.state) {
                 State.SUCCESS -> {
                     tvName.text=it?.data?.nama_lengkap.toString()
                     tvphone.text=it?.data?.phone.toString()
                     tvEmail.text=it?.data?.email.toString()
+/*
                     Log.e("iamge",Constants.BASE_URL+it?.data?.photo.toString())
+*/
+/*
                     Picasso.get().load(Constants.BASE_Image+it?.data?.photo).into(binding.imageProfile)
+*/
                     tvInitial.text=it?.data?.nama_lengkap.toString()
                 }
                 State.ERROR -> {

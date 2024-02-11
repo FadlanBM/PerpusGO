@@ -9,139 +9,132 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        >
+        android:layout_centerInParent="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selamat Datang"
                 android:fontFamily="@font/poppinsbold"
-                android:textSize="@dimen/_18ssp"/>
+                android:text="Selamat Datang"
+                android:textSize="@dimen/_18ssp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register"
-                android:fontFamily="@font/poppinsregular"
-                android:textSize="@dimen/_16ssp"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                />
+                android:fontFamily="@font/poppinsregular"
+                android:text="Register"
+                android:textSize="@dimen/_16ssp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_5sdp">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiNama_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nama"
-                        android:inputType="text"
-                        android:id="@+id/tiNama_register"/>
+                        android:hint="Full Nama"
+                        android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiEmail_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:id="@+id/tiEmail_register"/>
+                        android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_5sdp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Alamat"
-                        android:inputType="text"
-                        android:id="@+id/tiAlamat_register"/>
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    >
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tiPhone_register"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="No Telp"
-                        android:inputType="phone" />
-                </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     app:passwordToggleEnabled="true">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiPassword_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
-                        android:inputType="textPassword"
-                        android:id="@+id/tiPassword_register"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     app:passwordToggleEnabled="true">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiConfirmPassword_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Comfirm Password"
-                        android:inputType="textPassword"
-                        android:id="@+id/tiConfirmPassword_register"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:text="Register"
-                app:cornerRadius="@dimen/_5sdp"
-                android:textSize="@dimen/_16ssp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:id="@+id/btnRegister"/>
+                android:text="Register"
+                android:textSize="@dimen/_16ssp"
+                app:cornerRadius="@dimen/_5sdp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sudah Punya Akun ?"
+                    android:layout_marginVertical="@dimen/_3sdp"
                     android:fontFamily="@font/poppinsregular"
-                    android:layout_marginVertical="@dimen/_3sdp"/>
+                    android:text="Sudah Punya Akun ?" />
+
                 <TextView
+                    android:id="@+id/tvLogin_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Login"
-                    android:textColor="#FF0000"
-                    android:fontFamily="@font/poppinsregular"
                     android:layout_marginHorizontal="@dimen/_3sdp"
                     android:layout_marginVertical="@dimen/_3sdp"
-                    android:id="@+id/tvLogin_register"/>
+                    android:fontFamily="@font/poppinsregular"
+                    android:text="Login"
+                    android:textColor="#FF0000" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:id="@+id/pbLoading"/>
 </RelativeLayout>
